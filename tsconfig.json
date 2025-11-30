@@ -1,5 +1,13 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "~/*": ["./*"],
+      "@ui/*": ["layers/ui-kit/*"]
+    }
+  },
   "files": [],
   "references": [
     {

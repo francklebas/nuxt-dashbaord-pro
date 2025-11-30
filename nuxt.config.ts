@@ -1,16 +1,24 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { fileURLToPath } from "node:url";
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
-  devtools: { enabled: true },
+  devtools: {
+    enabled: true,
+
+    timeline: {
+      enabled: true,
+    },
+  },
 
   modules: [
-    "@nuxt/content",
     "@nuxt/eslint",
     "@nuxt/hints",
     "@nuxt/image",
     "@nuxt/scripts",
     "@nuxt/test-utils",
-    "@nuxt/ui",
+    "reka-ui/nuxt",
+    "@nuxtjs/tailwindcss",
   ],
 
   extends: [
@@ -19,5 +27,9 @@ export default defineNuxtConfig({
     "./layers/features",
     "./layers/ui-kit",
   ],
-});
 
+  // Custom import aliases
+  alias: {
+    "@ui": fileURLToPath(new URL("./layers/ui-kit", import.meta.url)),
+  },
+});
