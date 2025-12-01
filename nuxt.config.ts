@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     "reka-ui/nuxt",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/i18n",
+    "@nuxtjs/color-mode",
   ],
 
   extends: [
@@ -32,7 +33,11 @@ export default defineNuxtConfig({
   // Custom import aliases
   alias: {
     "@ui": fileURLToPath(new URL("./layers/ui-kit", import.meta.url)),
+    "@components": fileURLToPath(new URL("./app/components/", import.meta.url)),
   },
+
+  // CSS
+  css: ["~/assets/css/main.css"],
 
   // Modules configuration
   i18n: {
@@ -41,6 +46,13 @@ export default defineNuxtConfig({
       { code: "en", name: "English", file: "en.json" },
       { code: "fr", name: "Français", file: "fr.json" },
     ],
+  },
+
+  // Color mode configuration
+  colorMode: {
+    classSuffix: "",
+    preference: "system",
+    fallback: "light",
   },
 });
 
