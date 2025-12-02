@@ -41,6 +41,40 @@ export default {
         md: "var(--radius-md)",
         sm: "var(--radius-sm)",
       },
+      keyframes: {
+        "fade-in": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        "fade-out": {
+          from: { opacity: "1" },
+          to: { opacity: "0" },
+        },
+        "zoom-in": {
+          from: { opacity: "0", transform: "scale(0.95)" },
+          to: { opacity: "1", transform: "scale(1)" },
+        },
+        "zoom-out": {
+          from: { opacity: "1", transform: "scale(1)" },
+          to: { opacity: "0", transform: "scale(0.95)" },
+        },
+        "slide-in-from-top": {
+          from: { transform: "translateY(-48%) translateX(-50%)" },
+          to: { transform: "translateY(-50%) translateX(-50%)" },
+        },
+        "slide-out-to-top": {
+          from: { transform: "translateY(-50%) translateX(-50%)" },
+          to: { transform: "translateY(-48%) translateX(-50%)" },
+        },
+      },
+      animation: {
+        "fade-in": "fade-in 0.2s ease-out",
+        "fade-out": "fade-out 0.2s ease-in",
+        "zoom-in": "zoom-in 0.2s ease-out",
+        "zoom-out": "zoom-out 0.2s ease-in",
+        "slide-in": "slide-in-from-top 0.2s ease-out",
+        "slide-out": "slide-out-to-top 0.2s ease-in",
+      },
     },
   },
   plugins: [],
