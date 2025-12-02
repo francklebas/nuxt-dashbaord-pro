@@ -2,7 +2,16 @@
   "welcome": "Bienvenue",
   "nav": {
     "home": "Accueil",
-    "form": "Formulaire de contact"
+    "form": "Formulaire de contact",
+    "components": "Composants"
+  },
+  "components": {
+    "title": "Bibliothèque de composants",
+    "description": "Parcourir et explorer les composants d'interface disponibles",
+    "buttons": "Boutons",
+    "buttonsDesc": "Composant bouton avec plusieurs variantes et tailles",
+    "modals": "Modales",
+    "modalsDesc": "Boîtes de dialogue modales pour afficher du contenu"
   },
   "form": {
     "title": "Formulaire de contact",

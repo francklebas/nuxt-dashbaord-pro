@@ -2,7 +2,16 @@
   "welcome": "Welcome",
   "nav": {
     "home": "Home",
-    "form": "Contact Form"
+    "form": "Contact Form",
+    "components": "Components"
+  },
+  "components": {
+    "title": "Component Library",
+    "description": "Browse and explore available UI components",
+    "buttons": "Buttons",
+    "buttonsDesc": "Button component with multiple variants and sizes",
+    "modals": "Modals",
+    "modalsDesc": "Modal dialogs for displaying content"
   },
   "form": {
     "title": "Contact Form",
