@@ -43,10 +43,19 @@ export default defineNuxtConfig({
   // Modules configuration
   i18n: {
     defaultLocale: "en",
+    langDir: "locales",
     locales: [
       { code: "en", name: "English", file: "en.json" },
       { code: "fr", name: "Français", file: "fr.json" },
     ],
+    strategy: "no_prefix",
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_redirected",
+      redirectOn: "root",
+      alwaysRedirect: false,
+      fallbackLocale: "en",
+    },
   },
 
   // Color mode configuration
