@@ -17,6 +17,7 @@ test.describe("Components Page", () => {
     await expect(page.locator("#buttons")).toBeVisible();
     await expect(page.locator("#modals")).toBeVisible();
     await expect(page.locator("#tabs")).toBeVisible();
+    await expect(page.locator("#tooltips")).toBeVisible();
   });
 
   test("should have sidebar navigation in DOM", async ({ page }) => {
@@ -24,9 +25,9 @@ test.describe("Components Page", () => {
     const sidebar = page.locator("aside");
     await expect(sidebar).toBeAttached();
 
-    // Check navigation items exist (at least 3 buttons for buttons, modals, tabs)
+    // Check navigation items exist (at least 4 buttons for buttons, modals, tabs, tooltips)
     const navButtons = sidebar.locator("button");
-    expect(await navButtons.count()).toBeGreaterThanOrEqual(3);
+    expect(await navButtons.count()).toBeGreaterThanOrEqual(4);
   });
 
   test("should display button variants and sizes", async ({ page }) => {
@@ -284,5 +285,32 @@ test.describe("Components Page", () => {
     // Verify Details tab is selected
     await expect(detailsTab).toHaveAttribute("aria-selected", "true");
     await expect(basicTabsContainer.getByText(/Detailed information/i)).toBeVisible();
+  });
+
+  test("should display tooltips component section", async ({ page }) => {
+    const tooltipsSection = page.locator("#tooltips");
+    await expect(tooltipsSection).toBeVisible();
+
+    // Check that playground tab has tooltip buttons
+    await expect(tooltipsSection.getByRole("button", { name: /^top$/i })).toBeVisible();
+    await expect(tooltipsSection.getByRole("button", { name: /^right$/i })).toBeVisible();
+    await expect(tooltipsSection.getByRole("button", { name: /^bottom$/i })).toBeVisible();
+    await expect(tooltipsSection.getByRole("button", { name: /^left$/i })).toBeVisible();
+  });
+
+  test("should show tooltips examples", async ({ page }) => {
+    const tooltipsSection = page.locator("#tooltips");
+
+    // Click on Examples tab
+    await tooltipsSection.getByRole("tab", { name: /examples/i }).click();
+    await page.waitForTimeout(300);
+
+    // Check that examples are visible
+    await expect(tooltipsSection.getByText(/Basic Tooltip/i)).toBeVisible();
+    await expect(tooltipsSection.getByText(/Positions/i)).toBeVisible();
+    await expect(tooltipsSection.getByText(/Icon with Tooltip/i)).toBeVisible();
+
+    // Verify features list is present
+    await expect(tooltipsSection.getByText(/Four positioning options/i)).toBeVisible();
   });
 });

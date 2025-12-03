@@ -13,7 +13,9 @@
     "modals": "Modals",
     "modalsDesc": "Modal dialogs for displaying content",
     "tabs": "Tabs",
-    "tabsDesc": "Accessible tab navigation component with icon support"
+    "tabsDesc": "Accessible tab navigation component with icon support",
+    "tooltips": "Tooltips",
+    "tooltipsDesc": "Contextual information on hover or focus with flexible positioning"
   },
   "form": {
     "title": "Contact Form",

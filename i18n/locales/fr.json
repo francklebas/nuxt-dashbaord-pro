@@ -13,7 +13,9 @@
     "modals": "Modales",
     "modalsDesc": "Boîtes de dialogue modales pour afficher du contenu",
     "tabs": "Onglets",
-    "tabsDesc": "Composant de navigation par onglets accessible avec support d'icônes"
+    "tabsDesc": "Composant de navigation par onglets accessible avec support d'icônes",
+    "tooltips": "Infobulles",
+    "tooltipsDesc": "Information contextuelle au survol ou au focus avec positionnement flexible"
   },
   "form": {
     "title": "Formulaire de contact",

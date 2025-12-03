@@ -3,6 +3,7 @@ import DpButton from "@ui/DpButton.vue";
 import DpModal from "@ui/components/DpModal.vue";
 import DpComponentPlayground from "@ui/components/DpComponentPlayground.vue";
 import DpTabs from "@ui/components/DpTabs.vue";
+import DpTooltip from "@ui/components/DpTooltip.vue";
 import type { PlaygroundControl } from "@ui/components/DpComponentPlayground.vue";
 import type { DpTab } from "@ui/components/DpTabs.vue";
 
@@ -28,6 +29,11 @@ const sections = [
     id: "tabs",
     name: "components.tabs",
     description: "components.tabsDesc",
+  },
+  {
+    id: "tooltips",
+    name: "components.tooltips",
+    description: "components.tooltipsDesc",
   },
 ];
 
@@ -155,6 +161,21 @@ const tabs = [
       <div>User content</div>
     </template>
   </DpTabs>
+</template>`;
+
+  try {
+    await navigator.clipboard.writeText(code);
+  } catch (err) {
+    console.error("Failed to copy code:", err);
+  }
+};
+
+// Copy tooltip code to clipboard
+const copyTooltipCode = async () => {
+  const code = `<template>
+  <DpTooltip content="Helpful information" side="top">
+    <DpButton>Hover me</DpButton>
+  </DpTooltip>
 </template>`;
 
   try {
@@ -596,6 +617,174 @@ const tabs = [
                       <li>Named slots for flexible content organization</li>
                       <li>Independent state for multiple instances</li>
                       <li>Automatic focus management</li>
+                    </ul>
+                  </div>
+                </div>
+              </template>
+            </DpTabs>
+          </section>
+
+          <!-- Tooltips Section -->
+          <section id="tooltips" class="scroll-mt-20">
+            <div class="mb-6">
+              <h2 class="text-2xl font-bold text-foreground mb-2">
+                {{ $t("components.tooltips") }}
+              </h2>
+              <p class="text-sm text-muted-foreground">
+                {{ $t("components.tooltipsDesc") }}
+              </p>
+            </div>
+
+            <!-- Tabs component tabs -->
+            <DpTabs :tabs="componentTabs" default-tab="playground">
+              <!-- Playground Tab -->
+              <template #playground>
+                <div class="bg-background border border-border rounded-lg shadow-sm overflow-hidden">
+                  <!-- Info Section -->
+                  <div class="border-b border-border bg-muted/30 p-6">
+                    <h3 class="text-lg font-semibold text-foreground mb-4">Playground</h3>
+                    <p class="text-sm text-muted-foreground mb-4">
+                      Hover over the elements below to see tooltips in action. Tooltips provide contextual information on hover or focus.
+                    </p>
+                  </div>
+
+                  <!-- Preview Section -->
+                  <div class="p-6 bg-background">
+                    <div class="flex items-center justify-between mb-4">
+                      <h4 class="text-sm font-semibold text-foreground">Live Preview</h4>
+                    </div>
+
+                    <div class="flex items-center justify-center p-8 border-2 border-dashed border-border rounded-lg bg-muted/20">
+                      <div class="flex flex-wrap gap-8 items-center justify-center">
+                        <!-- Top Tooltip -->
+                        <DpTooltip content="This is a top tooltip" side="top">
+                          <DpButton variant="outline">Top</DpButton>
+                        </DpTooltip>
+
+                        <!-- Right Tooltip -->
+                        <DpTooltip content="This is a right tooltip" side="right">
+                          <DpButton variant="outline">Right</DpButton>
+                        </DpTooltip>
+
+                        <!-- Bottom Tooltip -->
+                        <DpTooltip content="This is a bottom tooltip" side="bottom">
+                          <DpButton variant="outline">Bottom</DpButton>
+                        </DpTooltip>
+
+                        <!-- Left Tooltip -->
+                        <DpTooltip content="This is a left tooltip" side="left">
+                          <DpButton variant="outline">Left</DpButton>
+                        </DpTooltip>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Code Section -->
+                  <div class="border-t border-border bg-muted/30 p-6">
+                    <div class="flex items-center justify-between mb-3">
+                      <h4 class="text-sm font-semibold text-foreground">Usage Example</h4>
+                      <button
+                        @click="copyTooltipCode"
+                        class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted"
+                      >
+                        <Icon name="lucide:copy" class="w-4 h-4" />
+                        Copy
+                      </button>
+                    </div>
+
+                    <pre class="p-4 bg-background border border-border rounded-md overflow-x-auto text-sm"><code class="text-foreground font-mono">&lt;template&gt;
+  &lt;DpTooltip content="Helpful information" side="top"&gt;
+    &lt;DpButton&gt;Hover me&lt;/DpButton&gt;
+  &lt;/DpTooltip&gt;
+&lt;/template&gt;</code></pre>
+                  </div>
+                </div>
+              </template>
+
+              <!-- Examples Tab -->
+              <template #examples>
+                <div class="space-y-8">
+                  <!-- Basic Tooltip -->
+                  <div>
+                    <h3 class="text-lg font-semibold text-foreground mb-4">Basic Tooltip</h3>
+                    <div class="flex gap-4">
+                      <DpTooltip content="Simple tooltip">
+                        <DpButton variant="primary">Hover for tooltip</DpButton>
+                      </DpTooltip>
+                    </div>
+                  </div>
+
+                  <!-- Tooltip Positions -->
+                  <div>
+                    <h3 class="text-lg font-semibold text-foreground mb-4">Positions</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <DpTooltip content="Top tooltip" side="top">
+                        <DpButton variant="outline" class="w-full">Top</DpButton>
+                      </DpTooltip>
+                      <DpTooltip content="Right tooltip" side="right">
+                        <DpButton variant="outline" class="w-full">Right</DpButton>
+                      </DpTooltip>
+                      <DpTooltip content="Bottom tooltip" side="bottom">
+                        <DpButton variant="outline" class="w-full">Bottom</DpButton>
+                      </DpTooltip>
+                      <DpTooltip content="Left tooltip" side="left">
+                        <DpButton variant="outline" class="w-full">Left</DpButton>
+                      </DpTooltip>
+                    </div>
+                  </div>
+
+                  <!-- Icon with Tooltip -->
+                  <div>
+                    <h3 class="text-lg font-semibold text-foreground mb-4">Icon with Tooltip</h3>
+                    <div class="flex gap-4">
+                      <DpTooltip content="Information">
+                        <button class="p-2 rounded-md hover:bg-muted transition-colors">
+                          <Icon name="lucide:info" class="w-5 h-5 text-muted-foreground" />
+                        </button>
+                      </DpTooltip>
+                      <DpTooltip content="Settings">
+                        <button class="p-2 rounded-md hover:bg-muted transition-colors">
+                          <Icon name="lucide:settings" class="w-5 h-5 text-muted-foreground" />
+                        </button>
+                      </DpTooltip>
+                      <DpTooltip content="Help">
+                        <button class="p-2 rounded-md hover:bg-muted transition-colors">
+                          <Icon name="lucide:help-circle" class="w-5 h-5 text-muted-foreground" />
+                        </button>
+                      </DpTooltip>
+                    </div>
+                  </div>
+
+                  <!-- With Different Content -->
+                  <div>
+                    <h3 class="text-lg font-semibold text-foreground mb-4">Different Content Lengths</h3>
+                    <div class="flex flex-wrap gap-4">
+                      <DpTooltip content="Short">
+                        <DpButton variant="secondary" size="sm">Short</DpButton>
+                      </DpTooltip>
+                      <DpTooltip content="This is a medium length tooltip message">
+                        <DpButton variant="secondary" size="sm">Medium</DpButton>
+                      </DpTooltip>
+                      <DpTooltip content="This is a much longer tooltip message that provides detailed information to the user about what this element does">
+                        <DpButton variant="secondary" size="sm">Long</DpButton>
+                      </DpTooltip>
+                    </div>
+                  </div>
+
+                  <!-- Features List -->
+                  <div>
+                    <h3 class="text-lg font-semibold text-foreground mb-4">Features</h3>
+                    <ul class="list-disc list-inside space-y-2 text-muted-foreground">
+                      <li>Four positioning options (top, right, bottom, left)</li>
+                      <li>Alignment control (start, center, end)</li>
+                      <li>Configurable delay duration</li>
+                      <li>Built with Reka UI Tooltip (Radix Vue)</li>
+                      <li>Full ARIA accessibility compliance</li>
+                      <li>Keyboard navigation support</li>
+                      <li>Smooth animations with fade and zoom effects</li>
+                      <li>Portal-based rendering to avoid z-index issues</li>
+                      <li>Automatic collision detection and repositioning</li>
+                      <li>Hover and focus trigger support</li>
                     </ul>
                   </div>
                 </div>
