@@ -23,3 +23,7 @@ logs
 .env.*
 !.env.example
 /data
+
+# Distribution packages
+*.zip
+dist-package/
