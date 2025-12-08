@@ -39,51 +39,51 @@
     "invalidEmail": "Veuillez entrer une adresse e-mail valide"
   },
   "pricing": {
-    "title": "Tarifs qui évoluent avec la taille de votre équipe",
-    "subtitle": "Choisissez le plan parfait pour vos besoins. Tous les plans incluent 14 jours d'essai gratuit.",
-    "period": "mois",
+    "title": "Choisissez votre template Nuxt Dashboard",
+    "subtitle": "Templates dashboard professionnels construits avec Nuxt 4, Vue 3 et TypeScript. Commencez dès aujourd'hui.",
+    "period": "achat unique",
     "popularBadge": "Le plus populaire",
-    "footer": "Tous les plans incluent un support 24/7 et une garantie satisfait ou remboursé de 30 jours.",
+    "footer": "Toutes les licences incluent les mises à jour à vie et l'accès au code source complet.",
     "starter": {
-      "title": "Starter",
-      "description": "Parfait pour les petites équipes et les startups",
-      "cta": "Commencer",
+      "title": "Actuel",
+      "description": "Template tel quel avec quelques lacunes",
+      "cta": "Acheter maintenant",
       "features": {
-        "users": "Jusqu'à 5 membres",
-        "projects": "10 projets",
-        "storage": "5Go de stockage",
-        "support": "Support par e-mail",
-        "analytics": "Analyses avancées",
-        "api": "Accès API",
-        "customDomain": "Domaine personnalisé"
+        "users": "Nuxt 4 + Vue 3 + TypeScript",
+        "projects": "Composants UI (Boutons, Modales, Onglets, Infobulles)",
+        "storage": "Exemple de formulaire basique",
+        "support": "Documentation incluse",
+        "analytics": "Support du dark mode",
+        "api": "Formulaires (à compléter)",
+        "customDomain": "Showcase des composants (en cours)"
       }
     },
     "professional": {
-      "title": "Professionnel",
-      "description": "Idéal pour les entreprises en croissance",
-      "cta": "Commencer l'essai gratuit",
+      "title": "V1 Complète",
+      "description": "Toutes les lacunes corrigées, prêt pour la production",
+      "cta": "Précommander V1",
       "features": {
-        "users": "Jusqu'à 25 membres",
-        "projects": "Projets illimités",
-        "storage": "50Go de stockage",
-        "support": "Support prioritaire",
-        "analytics": "Analyses avancées",
-        "api": "Accès API complet",
-        "customDomain": "Domaine personnalisé"
+        "users": "Tout ce qui est dans Actuel",
+        "projects": "Formulaires fonctionnels avec validation",
+        "storage": "Implémentation complète du dark mode",
+        "support": "Showcase professionnel des composants",
+        "analytics": "Variantes de section Hero",
+        "api": "Templates de sections Features",
+        "customDomain": "Support par e-mail prioritaire"
       }
     },
     "enterprise": {
-      "title": "Entreprise",
-      "description": "Pour les grandes organisations",
-      "cta": "Contacter les ventes",
+      "title": "V2 Premium",
+      "description": "Solution dashboard complète",
+      "cta": "Bientôt disponible",
       "features": {
-        "users": "Membres illimités",
-        "projects": "Projets illimités",
-        "storage": "Stockage illimité",
-        "support": "Support dédié 24/7",
-        "analytics": "Analyses avancées",
-        "api": "Accès API complet",
-        "customDomain": "Domaine personnalisé + SSL"
+        "users": "Tout ce qui est dans V1 Complète",
+        "projects": "Variantes Hero multiples",
+        "storage": "Page Dashboard avec graphiques",
+        "support": "Animations et transitions avancées",
+        "analytics": "Templates de pages additionnels",
+        "api": "Bibliothèque de composants premium",
+        "customDomain": "Support et mises à jour prioritaires"
       }
     }
   }

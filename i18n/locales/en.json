@@ -39,51 +39,51 @@
     "invalidEmail": "Please enter a valid email address"
   },
   "pricing": {
-    "title": "Pricing that grows with your team size",
-    "subtitle": "Choose the perfect plan for your needs. All plans include a 14-day free trial.",
-    "period": "month",
+    "title": "Choose your Nuxt Dashboard Template",
+    "subtitle": "Professional dashboard templates built with Nuxt 4, Vue 3, and TypeScript. Start building today.",
+    "period": "one-time",
     "popularBadge": "Most Popular",
-    "footer": "All plans include 24/7 support and a 30-day money-back guarantee.",
+    "footer": "All licenses include lifetime updates and full source code access.",
     "starter": {
-      "title": "Starter",
-      "description": "Perfect for small teams and startups",
-      "cta": "Get Started",
+      "title": "Current",
+      "description": "Template as-is with some gaps",
+      "cta": "Buy Now",
       "features": {
-        "users": "Up to 5 team members",
-        "projects": "10 projects",
-        "storage": "5GB storage",
-        "support": "Email support",
-        "analytics": "Advanced analytics",
-        "api": "API access",
-        "customDomain": "Custom domain"
+        "users": "Nuxt 4 + Vue 3 + TypeScript",
+        "projects": "UI Components (Buttons, Modals, Tabs, Tooltips)",
+        "storage": "Basic form example",
+        "support": "Documentation included",
+        "analytics": "Dark mode support",
+        "api": "Forms (needs completion)",
+        "customDomain": "Component showcase (in progress)"
       }
     },
     "professional": {
-      "title": "Professional",
-      "description": "Best for growing businesses",
-      "cta": "Start Free Trial",
+      "title": "V1 Complete",
+      "description": "All gaps fixed, production-ready",
+      "cta": "Pre-order V1",
       "features": {
-        "users": "Up to 25 team members",
-        "projects": "Unlimited projects",
-        "storage": "50GB storage",
-        "support": "Priority support",
-        "analytics": "Advanced analytics",
-        "api": "Full API access",
-        "customDomain": "Custom domain"
+        "users": "Everything in Current",
+        "projects": "Fully functional forms with validation",
+        "storage": "Complete dark mode implementation",
+        "support": "Professional component showcase",
+        "analytics": "Hero section variants",
+        "api": "Features section templates",
+        "customDomain": "Priority email support"
       }
     },
     "enterprise": {
-      "title": "Enterprise",
-      "description": "For large organizations",
-      "cta": "Contact Sales",
+      "title": "V2 Premium",
+      "description": "Complete dashboard solution",
+      "cta": "Coming Soon",
       "features": {
-        "users": "Unlimited team members",
-        "projects": "Unlimited projects",
-        "storage": "Unlimited storage",
-        "support": "24/7 dedicated support",
-        "analytics": "Advanced analytics",
-        "api": "Full API access",
-        "customDomain": "Custom domain + SSL"
+        "users": "Everything in V1 Complete",
+        "projects": "Multiple Hero variants",
+        "storage": "Dashboard page with charts",
+        "support": "Advanced animations & transitions",
+        "analytics": "Additional page templates",
+        "api": "Premium components library",
+        "customDomain": "Priority support & updates"
       }
     }
   }

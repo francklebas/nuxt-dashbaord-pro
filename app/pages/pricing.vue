@@ -13,7 +13,7 @@ const plans = computed(() => [
   {
     title: t("pricing.starter.title"),
     description: t("pricing.starter.description"),
-    price: "$9",
+    price: "$29",
     period: t("pricing.period"),
     buttonText: t("pricing.starter.cta"),
     buttonVariant: "outline" as const,
@@ -23,7 +23,7 @@ const plans = computed(() => [
       { text: t("pricing.starter.features.projects"), included: true },
       { text: t("pricing.starter.features.storage"), included: true },
       { text: t("pricing.starter.features.support"), included: true },
-      { text: t("pricing.starter.features.analytics"), included: false },
+      { text: t("pricing.starter.features.analytics"), included: true },
       { text: t("pricing.starter.features.api"), included: false },
       { text: t("pricing.starter.features.customDomain"), included: false },
     ] as PricingFeature[],
@@ -31,7 +31,7 @@ const plans = computed(() => [
   {
     title: t("pricing.professional.title"),
     description: t("pricing.professional.description"),
-    price: "$29",
+    price: "$49",
     period: t("pricing.period"),
     buttonText: t("pricing.professional.cta"),
     buttonVariant: "primary" as const,
@@ -44,7 +44,7 @@ const plans = computed(() => [
       { text: t("pricing.professional.features.support"), included: true },
       { text: t("pricing.professional.features.analytics"), included: true },
       { text: t("pricing.professional.features.api"), included: true },
-      { text: t("pricing.professional.features.customDomain"), included: false },
+      { text: t("pricing.professional.features.customDomain"), included: true },
     ] as PricingFeature[],
   },
   {
