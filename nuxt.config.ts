@@ -64,5 +64,14 @@ export default defineNuxtConfig({
     preference: "system",
     fallback: "light",
   },
+
+  // Nitro configuration for deployment
+  nitro: {
+    preset: "netlify",
+    // Externalize native modules for Netlify
+    externals: {
+      inline: ["better-sqlite3"],
+    },
+  },
 });
 
