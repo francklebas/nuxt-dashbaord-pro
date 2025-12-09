@@ -11,6 +11,13 @@ const { t } = useI18n();
 
 useHead({
   title: t("components.title"),
+  meta: [
+    {
+      name: "description",
+      content:
+        "Explore the complete UI component library with interactive examples. Includes buttons, modals, tabs, tooltips, and more. Built with Vue 3 and Tailwind CSS.",
+    },
+  ],
 });
 
 // Component sections

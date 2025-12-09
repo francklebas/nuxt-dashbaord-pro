@@ -5,7 +5,14 @@ import type { PricingFeature } from "@ui/components/DpPricingCard.vue";
 const { t } = useI18n();
 
 useHead({
-  title: "Pricing",
+  title: "Pricing - Dashboard Pro",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Choose the perfect Nuxt dashboard template for your project. Three pricing tiers available: Current ($29), V1 Complete ($49), and V2 Premium ($99). One-time purchase, lifetime updates.",
+    },
+  ],
 });
 
 // Pricing plans data

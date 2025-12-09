@@ -5,6 +5,13 @@ const { t } = useI18n();
 
 useHead({
   title: t("form.title"),
+  meta: [
+    {
+      name: "description",
+      content:
+        "Contact form example with client-side validation, error handling, and success messages. Built with Vue 3 Composition API and TypeScript.",
+    },
+  ],
 });
 
 // Form state

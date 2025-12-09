@@ -3,7 +3,14 @@ import DpButton from "@ui/DpButton.vue";
 import DpModal from "@ui/components/DpModal.vue";
 
 useHead({
-  title: "Dashboard",
+  title: "Dashboard Pro - Modern Nuxt Template",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Professional Nuxt 4 dashboard template with Vue 3, TypeScript, and Tailwind CSS. Features dark mode, i18n, responsive design, and complete UI component library.",
+    },
+  ],
 });
 
 // Modal states
