@@ -3,6 +3,16 @@ import { fileURLToPath } from "node:url";
 
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
+
+  // HTML lang attribute for accessibility
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: "en",
+      },
+    },
+  },
+
   devtools: {
     enabled: true,
 

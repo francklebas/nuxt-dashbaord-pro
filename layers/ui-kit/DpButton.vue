@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<DpButtonProps>(), {
 const variantClasses = computed(() => {
   const variants = {
     primary:
-      "bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800 focus-visible:ring-primary-600 dark:bg-primary-500 dark:hover:bg-primary-600",
+      "bg-primary-700 text-white hover:bg-primary-800 active:bg-primary-900 focus-visible:ring-primary-700 dark:bg-primary-600 dark:hover:bg-primary-700",
     secondary:
       "bg-muted text-foreground hover:bg-muted/80 active:bg-muted/70 focus-visible:ring-border",
     outline:
@@ -24,7 +24,7 @@ const variantClasses = computed(() => {
     ghost:
       "bg-transparent text-foreground hover:bg-muted active:bg-muted/80 focus-visible:ring-border",
     destructive:
-      "bg-red-600 text-white hover:bg-red-700 active:bg-red-800 focus-visible:ring-red-600 dark:bg-red-500 dark:hover:bg-red-600",
+      "bg-red-700 text-white hover:bg-red-800 active:bg-red-900 focus-visible:ring-red-700 dark:bg-red-600 dark:hover:bg-red-700",
   };
   return variants[props.variant];
 });
