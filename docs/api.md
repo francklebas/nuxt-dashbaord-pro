@@ -34,3 +34,30 @@ Ajoute un nouvel utilisateur à la liste d'attente. Les données sont validées 
     "email": "exemple@domaine.com"
   }
 }
+```
+**❌ 400 Bad Request - Erreur de validation**
+```json
+{
+  "statusCode": 400,
+  "statusMessage": "Validation error",
+  "data": {
+    "errors": [
+      {
+        "field": "email",
+        "message": "Invalid email address"
+      }
+    ]
+  }
+}
+```
+**❌ 500 Internal Server Error**
+```json
+{
+  "statusCode": 500,
+  "statusMessage": "Internal server error"
+}
+```
+**🛠 Extension Future**
+Pour ajouter de nouveaux endpoints, créez de nouveaux fichiers dans le dossier server/api/. Nuxt générera automatiquement les routes correspondantes.
+
+Exemple : server/api/users.get.ts créera une route GET /api/users.
