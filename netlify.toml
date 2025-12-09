@@ -1,7 +1,7 @@
 # Netlify configuration for Nuxt 4 with Nitro
 [build]
   command = "npm run build"
-  # No publish directory needed - Netlify preset handles everything
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
