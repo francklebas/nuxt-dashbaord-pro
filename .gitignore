@@ -28,3 +28,12 @@ logs
 # Distribution packages
 *.zip
 dist-package/
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/playwright-*-report/
+
+# E2E Screenshots  
+/tests/e2e/screenshots/*.png
