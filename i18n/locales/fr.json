@@ -6,6 +6,9 @@
     "form": "Formulaire de contact",
     "components": "Composants",
     "pricing": "Tarifs",
+    "profile": "Profil",
+    "settings": "Paramètres",
+    "billing": "Facturation",
     "logout": "Déconnexion"
   },
   "components": {
@@ -246,6 +249,86 @@
       "thisMonth": "ce mois",
       "thisWeek": "cette semaine",
       "today": "aujourd'hui"
+    }
+  },
+  "settings": {
+    "title": "Paramètres",
+    "description": "Gérez vos paramètres de compte et préférences",
+    "save": "Enregistrer les modifications",
+    "saving": "Enregistrement...",
+    "tabs": {
+      "profile": "Profil",
+      "account": "Compte",
+      "preferences": "Préférences",
+      "billing": "Facturation",
+      "team": "Équipe"
+    },
+    "profile": {
+      "title": "Informations du profil",
+      "description": "Mettez à jour vos informations personnelles et votre photo de profil",
+      "photo": "Photo de profil",
+      "uploadPhoto": "Télécharger une photo",
+      "photoHint": "JPG, PNG ou GIF. Taille max 2MB.",
+      "name": "Nom complet",
+      "email": "Adresse e-mail",
+      "emailHint": "Votre adresse e-mail ne peut pas être modifiée",
+      "bio": "Biographie",
+      "bioPlaceholder": "Parlez-nous de vous...",
+      "bioHint": "Brève description de votre profil. Max 160 caractères.",
+      "saved": "Profil mis à jour avec succès !"
+    },
+    "account": {
+      "password": {
+        "title": "Changer le mot de passe",
+        "description": "Mettez à jour votre mot de passe pour sécuriser votre compte",
+        "current": "Mot de passe actuel",
+        "new": "Nouveau mot de passe",
+        "confirm": "Confirmer le mot de passe",
+        "update": "Mettre à jour le mot de passe",
+        "updated": "Mot de passe mis à jour avec succès !"
+      },
+      "twoFactor": {
+        "title": "Authentification à deux facteurs",
+        "description": "Ajoutez une couche de sécurité supplémentaire à votre compte",
+        "status": "Statut 2FA : Désactivé",
+        "statusDesc": "Protégez votre compte avec l'authentification à deux facteurs",
+        "enable": "Activer 2FA"
+      }
+    },
+    "preferences": {
+      "title": "Préférences",
+      "description": "Personnalisez votre expérience",
+      "language": "Langue",
+      "timezone": "Fuseau horaire",
+      "saved": "Préférences mises à jour avec succès !",
+      "notifications": {
+        "email": "Notifications par e-mail",
+        "updates": "Mises à jour du produit",
+        "updatesDesc": "Actualités, annonces et mises à jour du produit",
+        "marketing": "E-mails marketing",
+        "marketingDesc": "Offres, promotions et conseils"
+      }
+    },
+    "billing": {
+      "plan": {
+        "title": "Plan actuel",
+        "description": "Gérez votre abonnement et facturation",
+        "current": "Plan gratuit",
+        "currentDesc": "Vous êtes actuellement sur le plan gratuit",
+        "upgrade": "Mettre à niveau le plan"
+      },
+      "payment": {
+        "title": "Méthode de paiement",
+        "description": "Gérez vos informations de paiement",
+        "update": "Mettre à jour"
+      }
+    },
+    "team": {
+      "title": "Membres de l'équipe",
+      "description": "Gérez les membres de l'équipe et leurs permissions",
+      "invite": "Inviter un membre",
+      "inviteSuccess": "Invitation envoyée avec succès !",
+      "confirmRemove": "Êtes-vous sûr de vouloir supprimer ce membre ?"
     }
   }
 }

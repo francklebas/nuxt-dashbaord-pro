@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import DpThemeToggle from "./DpThemeToggle.vue";
+import DpAvatarDropdown from "./DpAvatarDropdown.vue";
 
 const { locale, locales, setLocale } = useI18n();
-const { isAuthenticated, user, logout } = useAuth();
+const { isAuthenticated } = useAuth();
 </script>
 
 <template>
@@ -94,17 +95,7 @@ const { isAuthenticated, user, logout } = useAuth();
               {{ $t('auth.register.title') }}
             </NuxtLink>
           </div>
-          <div v-else class="flex items-center gap-3">
-            <span class="text-sm text-muted-foreground">
-              {{ user?.name || user?.email }}
-            </span>
-            <button
-              @click="logout"
-              class="px-4 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors"
-            >
-              {{ $t('nav.logout') }}
-            </button>
-          </div>
+          <DpAvatarDropdown v-else />
         </div>
       </div>
     </div>

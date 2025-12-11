@@ -6,6 +6,9 @@
     "form": "Contact Form",
     "components": "Components",
     "pricing": "Pricing",
+    "profile": "Profile",
+    "settings": "Settings",
+    "billing": "Billing",
     "logout": "Logout"
   },
   "components": {
@@ -246,6 +249,86 @@
       "thisMonth": "this month",
       "thisWeek": "this week",
       "today": "today"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Manage your account settings and preferences",
+    "save": "Save Changes",
+    "saving": "Saving...",
+    "tabs": {
+      "profile": "Profile",
+      "account": "Account",
+      "preferences": "Preferences",
+      "billing": "Billing",
+      "team": "Team"
+    },
+    "profile": {
+      "title": "Profile Information",
+      "description": "Update your personal information and profile picture",
+      "photo": "Profile Photo",
+      "uploadPhoto": "Upload Photo",
+      "photoHint": "JPG, PNG or GIF. Max size 2MB.",
+      "name": "Full Name",
+      "email": "Email Address",
+      "emailHint": "Your email address cannot be changed",
+      "bio": "Bio",
+      "bioPlaceholder": "Tell us about yourself...",
+      "bioHint": "Brief description for your profile. Max 160 characters.",
+      "saved": "Profile updated successfully!"
+    },
+    "account": {
+      "password": {
+        "title": "Change Password",
+        "description": "Update your password to keep your account secure",
+        "current": "Current Password",
+        "new": "New Password",
+        "confirm": "Confirm Password",
+        "update": "Update Password",
+        "updated": "Password updated successfully!"
+      },
+      "twoFactor": {
+        "title": "Two-Factor Authentication",
+        "description": "Add an extra layer of security to your account",
+        "status": "2FA Status: Disabled",
+        "statusDesc": "Protect your account with two-factor authentication",
+        "enable": "Enable 2FA"
+      }
+    },
+    "preferences": {
+      "title": "Preferences",
+      "description": "Customize your experience",
+      "language": "Language",
+      "timezone": "Timezone",
+      "saved": "Preferences updated successfully!",
+      "notifications": {
+        "email": "Email Notifications",
+        "updates": "Product Updates",
+        "updatesDesc": "News, announcements, and product updates",
+        "marketing": "Marketing Emails",
+        "marketingDesc": "Offers, promotions, and tips"
+      }
+    },
+    "billing": {
+      "plan": {
+        "title": "Current Plan",
+        "description": "Manage your subscription and billing",
+        "current": "Free Plan",
+        "currentDesc": "You are currently on the free plan",
+        "upgrade": "Upgrade Plan"
+      },
+      "payment": {
+        "title": "Payment Method",
+        "description": "Manage your payment information",
+        "update": "Update"
+      }
+    },
+    "team": {
+      "title": "Team Members",
+      "description": "Manage team members and their permissions",
+      "invite": "Invite Member",
+      "inviteSuccess": "Invitation sent successfully!",
+      "confirmRemove": "Are you sure you want to remove this member?"
     }
   }
 }
