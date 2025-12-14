@@ -8,6 +8,7 @@
     "test:nuxt": "vitest --project nuxt",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
+    "lint": "eslint .",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",

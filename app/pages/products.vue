@@ -1,24 +1,28 @@
 <script setup lang="ts">
-import { type ColumnDef } from '@tanstack/vue-table';
-import { h, resolveComponent } from 'vue';
-import type { Product } from '~/layers/core/types/database';
+import type {
+  ColumnDef,
+  PaginationState,
+  SortingState,
+} from "@tanstack/vue-table";
+import { h, resolveComponent } from "vue";
+import type { Product } from "~/layers/core/types/database";
 import {
-  createSelectionColumn,
   createCurrencyColumn,
   createDateColumn,
   createImageColumn,
-} from '../../layers/ui-kit/utils/dataTableColumns';
+  createSelectionColumn,
+} from "@ui/utils/dataTableColumns";
 
-const { t } = useI18n();
-const Icon = resolveComponent('Icon');
+// const { t } = useI18n(); // not used currently
+const Icon = resolveComponent("Icon");
 
 useHead({
-  title: 'Products - Data Table Demo',
+  title: "Products - Data Table Demo",
   meta: [
     {
-      name: 'description',
+      name: "description",
       content:
-        'Interactive data table with CRUD operations, search, filters, sorting, and pagination. Built with TanStack Table and Nuxt 4.',
+        "Interactive data table with CRUD operations, search, filters, sorting, and pagination. Built with TanStack Table and Nuxt 4.",
     },
   ],
 });
@@ -28,15 +32,16 @@ const {
   data: products,
   loading,
   total,
-  queryParams,
+  // queryParams,
   pageCount,
   setPage,
+  setLimit,
   setSearch,
   setSort,
   setFilters,
   clearFilters,
   refresh,
-} = useDataTable<Product>('/api/products');
+} = useDataTable<Product>("/api/products");
 
 // Modal state
 const showCreateModal = ref(false);
@@ -45,84 +50,97 @@ const showDeleteModal = ref(false);
 const selectedProduct = ref<Product | null>(null);
 
 // Define table columns
-const columns: ColumnDef<Product, any>[] = [
+const columns: ColumnDef<Product, unknown>[] = [
   createSelectionColumn<Product>(),
-  createImageColumn<Product>('image_url', 'Image', 'https://via.placeholder.com/40'),
+  createImageColumn<Product>(
+    "image_url",
+    "Image",
+    "https://via.placeholder.com/40",
+  ),
   {
-    accessorKey: 'name',
-    header: 'Product Name',
+    accessorKey: "name",
+    header: "Product Name",
     cell: ({ row }) => {
       const product = row.original;
-      return h('div', { class: 'flex flex-col' }, [
-        h('span', { class: 'font-medium text-foreground' }, product.name),
-        h('span', { class: 'text-sm text-muted-foreground' }, product.description || '—'),
+      return h("div", { class: "flex flex-col" }, [
+        h("span", { class: "font-medium text-foreground" }, product.name),
+        h(
+          "span",
+          { class: "text-sm text-muted-foreground" },
+          product.description || "—",
+        ),
       ]);
     },
   },
   {
-    accessorKey: 'category',
-    header: 'Category',
+    accessorKey: "category",
+    header: "Category",
   },
-  createCurrencyColumn<Product>('price', 'Price'),
+  createCurrencyColumn<Product>("price", "Price"),
   {
-    accessorKey: 'stock',
-    header: 'Stock',
+    accessorKey: "stock",
+    header: "Stock",
     cell: ({ getValue }) => {
       const stock = getValue() as number;
       return h(
-        'span',
+        "span",
         {
-          class: stock > 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400',
+          class:
+            stock > 0
+              ? "text-green-600 dark:text-green-400"
+              : "text-red-600 dark:text-red-400",
         },
-        stock > 0 ? stock.toString() : 'Out of stock'
+        stock > 0 ? stock.toString() : "Out of stock",
       );
     },
   },
   {
-    accessorKey: 'status',
-    header: 'Status',
+    accessorKey: "status",
+    header: "Status",
     cell: ({ getValue }) => {
       const status = getValue() as string;
       const colorMap: Record<string, string> = {
-        active: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300',
-        inactive: 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300',
-        discontinued: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300',
+        active:
+          "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
+        inactive:
+          "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300",
+        discontinued:
+          "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
       };
       return h(
-        'span',
+        "span",
         {
           class: `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${colorMap[status]}`,
         },
-        status.charAt(0).toUpperCase() + status.slice(1)
+        status.charAt(0).toUpperCase() + status.slice(1),
       );
     },
   },
-  createDateColumn<Product>('created_at', 'Created', 'short'),
+  createDateColumn<Product>("created_at", "Created", "short"),
   {
-    id: 'actions',
-    header: () => h('div', { class: 'text-right' }, 'Actions'),
+    id: "actions",
+    header: () => h("div", { class: "text-right" }, "Actions"),
     cell: ({ row }) => {
       const product = row.original;
-      return h('div', { class: 'flex items-center justify-end gap-2' }, [
+      return h("div", { class: "flex items-center justify-end gap-2" }, [
         h(
-          'button',
+          "button",
           {
             onClick: () => handleEdit(product),
-            class:
-              'p-2 hover:bg-muted rounded-md transition-colors',
-            title: 'Edit',
+            class: "p-2 hover:bg-muted rounded-md transition-colors",
+            title: "Edit",
           },
-          [h(Icon, { name: 'lucide:pencil', class: 'w-4 h-4' })]
+          [h(Icon, { name: "lucide:pencil", class: "w-4 h-4" })],
         ),
         h(
-          'button',
+          "button",
           {
             onClick: () => handleDelete(product),
             class:
-              'p-2 hover:bg-destructive/10 text-destructive rounded-md transition-colors',
-            title: 'Delete',
+              "p-2 hover:bg-destructive/10 text-destructive rounded-md transition-colors",
+            title: "Delete",
           },
-          [h(Icon, { name: 'lucide:trash-2', class: 'w-4 h-4' })]
+          [h(Icon, { name: "lucide:trash-2", class: "w-4 h-4" })],
         ),
       ]);
     },
@@ -133,41 +151,41 @@ const columns: ColumnDef<Product, any>[] = [
 // Filters configuration
 const filters = [
   {
-    key: 'category',
-    label: 'Category',
-    type: 'select' as const,
+    key: "category",
+    label: "Category",
+    type: "select" as const,
     options: [
-      { label: 'Electronics', value: 'Electronics' },
-      { label: 'Accessories', value: 'Accessories' },
-      { label: 'Furniture', value: 'Furniture' },
-      { label: 'Storage', value: 'Storage' },
+      { label: "Electronics", value: "Electronics" },
+      { label: "Accessories", value: "Accessories" },
+      { label: "Furniture", value: "Furniture" },
+      { label: "Storage", value: "Storage" },
     ],
   },
   {
-    key: 'status',
-    label: 'Status',
-    type: 'select' as const,
+    key: "status",
+    label: "Status",
+    type: "select" as const,
     options: [
-      { label: 'Active', value: 'active' },
-      { label: 'Inactive', value: 'inactive' },
-      { label: 'Discontinued', value: 'discontinued' },
+      { label: "Active", value: "active" },
+      { label: "Inactive", value: "inactive" },
+      { label: "Discontinued", value: "discontinued" },
     ],
   },
   {
-    key: 'inStock',
-    label: 'In Stock Only',
-    type: 'checkbox' as const,
-    placeholder: 'Show only products in stock',
+    key: "inStock",
+    label: "In Stock Only",
+    type: "checkbox" as const,
+    placeholder: "Show only products in stock",
   },
   {
-    key: 'Price',
-    label: 'Price Range',
-    type: 'number-range' as const,
+    key: "Price",
+    label: "Price Range",
+    type: "number-range" as const,
   },
   {
-    key: 'created',
-    label: 'Created Date',
-    type: 'date-range' as const,
+    key: "created",
+    label: "Created Date",
+    type: "date-range" as const,
   },
 ];
 
@@ -187,9 +205,9 @@ const handleCreate = () => {
   showCreateModal.value = true;
 };
 
-const handleBulkDelete = (selectedRows: any[]) => {
+const handleBulkDelete = (selectedRows: unknown[]) => {
   if (confirm(`Delete ${selectedRows.length} products?`)) {
-    console.log('Deleting:', selectedRows);
+    console.log("Deleting:", selectedRows);
     // In real app: call API to delete multiple products
   }
 };
@@ -204,19 +222,19 @@ const handleSaveProduct = async (productData: Partial<Product>) => {
     if (selectedProduct.value) {
       // Edit existing product
       await $fetch(`/api/products/${selectedProduct.value.id}`, {
-        method: 'PUT',
+        method: "PUT",
         body: productData,
       });
     } else {
       // Create new product
-      await $fetch('/api/products/create', {
-        method: 'POST',
+      await $fetch("/api/products/create", {
+        method: "POST",
         body: productData,
       });
     }
     await refresh();
   } catch (error) {
-    console.error('Error saving product:', error);
+    console.error("Error saving product:", error);
   }
 };
 
@@ -224,38 +242,39 @@ const handleConfirmDelete = async () => {
   if (selectedProduct.value) {
     try {
       await $fetch(`/api/products/${selectedProduct.value.id}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
       await refresh();
     } catch (error) {
-      console.error('Error deleting product:', error);
+      console.error("Error deleting product:", error);
     }
   }
 };
 
 // Handle sorting from TanStack Table
-const handleSortingChange = (sorting: any[]) => {
+const handleSortingChange = (sorting: SortingState) => {
   if (sorting.length > 0) {
     const sort = sorting[0];
-    setSort(sort.id, sort.desc ? 'desc' : 'asc');
+    setSort(sort.id, sort.desc ? "desc" : "asc");
   }
 };
 
 // Handle pagination from TanStack Table
-const handlePaginationChange = (pagination: any) => {
+const handlePaginationChange = (pagination: PaginationState) => {
   setPage(pagination.pageIndex + 1);
 };
 </script>
 
 <template>
-  <div class="container mx-auto py-8 px-4 max-w-7xl">
+  <div class="container mx-auto max-w-7xl px-4 py-8">
     <!-- Header -->
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-foreground mb-2">
+      <h1 class="mb-2 text-3xl font-bold text-foreground">
         Products Management
       </h1>
       <p class="text-muted-foreground">
-        Complete data table with CRUD operations, search, filters, and bulk actions
+        Complete data table with CRUD operations, search, filters, and bulk
+        actions
       </p>
     </div>
 
@@ -269,7 +288,7 @@ const handlePaginationChange = (pagination: any) => {
     >
       <template #actions>
         <DpButton @click="handleCreate">
-          <Icon name="lucide:plus" class="w-4 h-4 mr-2" />
+          <Icon name="lucide:plus" class="mr-2 h-4 w-4" />
           Add Product
         </DpButton>
       </template>
@@ -282,12 +301,14 @@ const handlePaginationChange = (pagination: any) => {
         :data="products"
         :loading="loading"
         :page-count="pageCount"
+        :total="total"
         :enable-row-selection="true"
         :manual-pagination="true"
         :manual-sorting="true"
         @row-click="handleRowClick"
         @sorting-change="handleSortingChange"
         @pagination-change="handlePaginationChange"
+        @page-size-change="setLimit"
       >
         <template #bulk-actions="{ selectedRows }">
           <DpButton
@@ -295,7 +316,7 @@ const handlePaginationChange = (pagination: any) => {
             size="sm"
             @click="handleBulkDelete(selectedRows)"
           >
-            <Icon name="lucide:trash-2" class="w-4 h-4 mr-2" />
+            <Icon name="lucide:trash-2" class="mr-2 h-4 w-4" />
             Delete Selected
           </DpButton>
         </template>
@@ -303,21 +324,21 @@ const handlePaginationChange = (pagination: any) => {
     </div>
 
     <!-- Stats -->
-    <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-      <div class="p-4 border border-border rounded-lg bg-card">
+    <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div class="bg-card rounded-lg border border-border p-4">
         <div class="text-sm text-muted-foreground">Total Products</div>
         <div class="text-2xl font-bold text-foreground">{{ total }}</div>
       </div>
-      <div class="p-4 border border-border rounded-lg bg-card">
+      <div class="bg-card rounded-lg border border-border p-4">
         <div class="text-sm text-muted-foreground">In Stock</div>
         <div class="text-2xl font-bold text-green-600">
-          {{ products.filter(p => p.stock > 0).length }}
+          {{ products.filter((p) => p.stock > 0).length }}
         </div>
       </div>
-      <div class="p-4 border border-border rounded-lg bg-card">
+      <div class="bg-card rounded-lg border border-border p-4">
         <div class="text-sm text-muted-foreground">Out of Stock</div>
         <div class="text-2xl font-bold text-red-600">
-          {{ products.filter(p => p.stock === 0).length }}
+          {{ products.filter((p) => p.stock === 0).length }}
         </div>
       </div>
     </div>

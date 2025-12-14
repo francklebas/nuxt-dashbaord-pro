@@ -51,12 +51,18 @@ export default defineNuxtConfig({
 
   // Custom import aliases
   alias: {
+    // Map "@/" to the project root so imports like "@/server/..." or "@/app/..." work
+    "@": fileURLToPath(new URL("./", import.meta.url)),
+    // Keep Nuxt's conventional "~" alias equivalent to project root, for TS and tooling
+    "~": fileURLToPath(new URL("./", import.meta.url)),
+    "@core": fileURLToPath(new URL("./layers/core", import.meta.url)),
     "@ui": fileURLToPath(new URL("./layers/ui-kit", import.meta.url)),
     "@components": fileURLToPath(new URL("./app/components/", import.meta.url)),
   },
 
   // CSS
-  css: ["~/assets/css/main.css"],
+  // Point to the actual location of the main stylesheet
+  css: ["@/app/assets/css/main.css"],
 
   // Modules configuration
   i18n: {
@@ -92,4 +98,3 @@ export default defineNuxtConfig({
     },
   },
 });
-

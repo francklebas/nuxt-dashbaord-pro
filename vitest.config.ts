@@ -1,8 +1,15 @@
 import { defineConfig } from "vitest/config";
+import { fileURLToPath } from "node:url";
 
 import { defineVitestProject } from "@nuxt/test-utils/config";
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./", import.meta.url)),
+      "~": fileURLToPath(new URL("./", import.meta.url)),
+    },
+  },
   test: {
     projects: [
       {
