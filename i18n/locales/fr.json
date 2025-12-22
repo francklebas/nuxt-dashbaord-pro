@@ -1,5 +1,88 @@
 {
   "welcome": "Bienvenue",
+  "common": {
+    "theme": "Thème"
+  },
+  "home": {
+    "meta": {
+      "title": "Nuxt Dashboard Pro - Template Premium pour Applications Business",
+      "description": "Template Nuxt 3 professionnel avec UI moderne, dark mode, TypeScript et composants accessibles. Lancez votre SaaS en jours au lieu de mois."
+    },
+    "nav": {
+      "demo": "Démo",
+      "pricing": "Tarifs",
+      "login": "Connexion",
+      "getStarted": "Commencer"
+    },
+    "hero": {
+      "title": "Nuxt Dashboard Pro, le template élégant et performant pour vos apps business",
+      "subtitle": "UI moderne, composants accessibles, dark mode, responsive, customisation facile – Prêt à lancer votre SaaS ou admin en jours au lieu de mois.",
+      "demoButtonText": "Voir la Demo Interactive",
+      "waitlistButtonText": "Rejoindre la Waitlist"
+    },
+    "features": {
+      "sectionTitle": "Tout ce dont vous avez besoin",
+      "sectionDescription": "Des composants prêts à l'emploi pour créer votre application professionnelle rapidement",
+      "dashboard": {
+        "title": "Dashboard Complet",
+        "description": "Interface d'administration moderne avec analytics, graphiques et KPIs."
+      },
+      "auth": {
+        "title": "Authentication",
+        "description": "Système complet : login, register, reset password, email verification."
+      },
+      "darkMode": {
+        "title": "Dark Mode",
+        "description": "Thème sombre/clair avec transitions fluides et personnalisation CSS."
+      },
+      "dataTables": {
+        "title": "Data Tables",
+        "description": "Tables avancées avec tri, filtrage, pagination et export."
+      },
+      "responsive": {
+        "title": "Responsive",
+        "description": "Design adaptatif parfait sur mobile, tablette et desktop."
+      },
+      "performance": {
+        "title": "Performance",
+        "description": "Lighthouse 95+, optimisé pour la vitesse et le SEO."
+      }
+    },
+    "demo": {
+      "title": "Essayez la Démo Maintenant",
+      "subtitle": "Connectez-vous avec les credentials de démonstration pour explorer toutes les fonctionnalités",
+      "credentialsLabel": "Credentials de démonstration :",
+      "loginButton": "Se Connecter",
+      "demoButton": "Voir la Démo Complète"
+    },
+    "components": {
+      "sectionTitle": "Composants UI",
+      "sectionDescription": "Bibliothèque de composants réutilisables et personnalisables",
+      "buttonVariants": "Variantes de Boutons",
+      "buttonSizes": "Tailles de Boutons",
+      "modalExamples": "Exemples de Modales",
+      "openSimpleModal": "Ouvrir la Modale Simple",
+      "openFormModal": "Ouvrir la Modale Formulaire",
+      "simpleModalTitle": "Titre de Modale Simple",
+      "simpleModalDescription": "Ceci est un exemple de modale simple avec un titre et une description.",
+      "simpleModalContent": "Ceci est le contenu de la modale. Vous pouvez ajouter n'importe quel contenu ici.",
+      "simpleModalHint": "Cliquez sur le bouton X ou appuyez sur Echap pour fermer la modale.",
+      "editProfile": "Modifier le Profil",
+      "editProfileDescription": "Apportez des modifications à votre profil ici.",
+      "name": "Nom",
+      "namePlaceholder": "Entrez votre nom",
+      "email": "Email",
+      "emailPlaceholder": "Entrez votre email",
+      "cancel": "Annuler",
+      "saveChanges": "Enregistrer les modifications"
+    },
+    "cta": {
+      "title": "Lancez Votre Projet Aujourd'hui",
+      "description": "Gagnez des semaines de développement avec notre template professionnel",
+      "createAccount": "Créer un Compte",
+      "viewPricing": "Voir les Tarifs"
+    }
+  },
   "nav": {
     "home": "Accueil",
     "dashboard": "Tableau de bord",
