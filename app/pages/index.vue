@@ -2,19 +2,16 @@
 import DpHero from "@ui/components/DpHero.vue";
 import DpButton from "@ui/DpButton.vue";
 import DpModal from "@ui/components/DpModal.vue";
-import DpCard from "@ui/components/DpCard.vue";
-import DpThemeToggle from "@ui/components/DpThemeToggle.vue";
-import DpMobileDrawer from "@ui/components/DpMobileDrawer.vue";
-import DpMobileNav from "@ui/components/DpMobileNav.vue";
 
 const { t } = useI18n();
 
+// Temporarily hardcoded for debugging
 useHead({
-  title: t("home.meta.title"),
+  title: "Nuxt Dashboard Pro - Premium Template",
   meta: [
     {
       name: "description",
-      content: t("home.meta.description"),
+      content: "Professional Nuxt 3 template with modern UI",
     },
   ],
 });
@@ -32,24 +29,6 @@ const handleFormSubmit = () => {
   formModalOpen.value = false;
   formData.value = { name: "", email: "" };
 };
-
-// Mobile menu state
-const mobileMenuOpen = ref(false);
-
-const closeMobileMenu = () => {
-  mobileMenuOpen.value = false;
-};
-
-// Auto-close menu on resize to desktop
-onMounted(() => {
-  const handleResize = () => {
-    if (window.innerWidth >= 768 && mobileMenuOpen.value) {
-      mobileMenuOpen.value = false;
-    }
-  };
-  window.addEventListener("resize", handleResize);
-  onUnmounted(() => window.removeEventListener("resize", handleResize));
-});
 
 // Features data
 const features = computed(() => [
@@ -88,83 +67,6 @@ const features = computed(() => [
 
 <template>
   <div class="min-h-screen">
-    <!-- Simple Navigation -->
-    <nav
-      class="fixed left-0 right-0 top-0 z-40 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-    >
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="flex h-16 items-center justify-between">
-          <!-- Logo -->
-          <NuxtLink
-            to="/"
-            class="flex items-center gap-2 transition-opacity hover:opacity-80"
-          >
-            <div
-              class="bg-primary flex h-8 w-8 items-center justify-center rounded-lg"
-            >
-              <span class="text-sm font-bold text-white">ND</span>
-            </div>
-            <span class="hidden font-bold text-foreground sm:inline"
-              >Nuxt Dashboard Pro</span
-            >
-          </NuxtLink>
-
-          <!-- Desktop Navigation -->
-          <div class="hidden items-center gap-6 md:flex">
-            <NuxtLink
-              to="/dashboard-preview"
-              class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {{ $t("home.nav.demo") }}
-            </NuxtLink>
-            <NuxtLink
-              to="/pricing"
-              class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {{ $t("home.nav.pricing") }}
-            </NuxtLink>
-            <DpThemeToggle />
-            <NuxtLink
-              to="/auth/login"
-              class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {{ $t("home.nav.login") }}
-            </NuxtLink>
-            <NuxtLink to="/auth/register">
-              <DpButton variant="primary" size="sm">
-                {{ $t("home.nav.getStarted") }}
-              </DpButton>
-            </NuxtLink>
-          </div>
-
-          <!-- Mobile Hamburger Button -->
-          <button
-            @click="mobileMenuOpen = !mobileMenuOpen"
-            class="md:hidden p-2 rounded-lg hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
-            :aria-expanded="mobileMenuOpen"
-            :aria-label="
-              mobileMenuOpen
-                ? 'Close navigation menu'
-                : 'Open navigation menu'
-            "
-          >
-            <Icon
-              :name="mobileMenuOpen ? 'lucide:x' : 'lucide:menu'"
-              class="w-6 h-6"
-            />
-          </button>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Add padding to account for fixed nav -->
-    <div class="h-16" />
-
-    <!-- Mobile Drawer -->
-    <DpMobileDrawer v-model:open="mobileMenuOpen">
-      <DpMobileNav :on-navigate="closeMobileMenu" />
-    </DpMobileDrawer>
-
     <!-- Hero Section -->
     <DpHero
       :title="$t('home.hero.title')"
@@ -411,22 +313,22 @@ const features = computed(() => [
     >
       <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <h2 class="mb-6 text-3xl font-bold text-foreground sm:text-4xl">
-          Lancez Votre Projet Aujourd'hui
+          {{ $t("home.cta.title") }}
         </h2>
         <p class="mb-8 text-xl text-muted-foreground">
-          Gagnez des semaines de développement avec notre template professionnel
+          {{ $t("home.cta.description") }}
         </p>
         <div class="flex flex-col justify-center gap-4 sm:flex-row">
           <NuxtLink to="/auth/register">
             <DpButton variant="primary" size="lg" class="w-full sm:w-auto">
               <Icon name="lucide:rocket" class="mr-2 h-5 w-5" />
-              Créer un Compte
+              {{ $t("home.cta.createAccount") }}
             </DpButton>
           </NuxtLink>
           <NuxtLink to="/pricing">
             <DpButton variant="outline" size="lg" class="w-full sm:w-auto">
               <Icon name="lucide:tag" class="mr-2 h-5 w-5" />
-              Voir les Tarifs
+              {{ $t("home.cta.viewPricing") }}
             </DpButton>
           </NuxtLink>
         </div>

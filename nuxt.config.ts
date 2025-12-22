@@ -85,10 +85,21 @@ export default defineNuxtConfig({
   },
 
   devtools: {
-    enabled: true,
+    enabled: false, // Temporarily disabled to debug error overlay issue
 
     timeline: {
-      enabled: true,
+      enabled: false,
+    },
+  },
+
+  // Disable error overlay to see real errors
+  vite: {
+    vue: {
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => false,
+        },
+      },
     },
   },
 
