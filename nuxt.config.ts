@@ -141,7 +141,6 @@ export default defineNuxtConfig({
       },
       // Optimize chunk size
       chunkSizeWarningLimit: 1000,
-      cssCodeSplit: false, // Don't split CSS to reduce network requests
       // Inline small CSS chunks
       assetsInlineLimit: 8192, // 8kb - inline assets smaller than this
     },
