@@ -230,7 +230,7 @@ export default defineNuxtConfig({
   // Modules configuration
   i18n: {
     defaultLocale: "en",
-    langDir: fileURLToPath(new URL("./i18n/locales", import.meta.url)),
+    langDir: "locales",
     locales: [
       { code: "en", name: "English", file: "en.json" },
       { code: "fr", name: "Français", file: "fr.json" },

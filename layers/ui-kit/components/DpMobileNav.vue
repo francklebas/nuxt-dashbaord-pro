@@ -4,23 +4,6 @@ import DpThemeToggle from "./DpThemeToggle.vue";
 
 const { t, locale, locales, setLocale } = useI18n();
 
-// Properly access locales ComputedRef
-const availableLocales = computed(() => locales.value);
-
-// Handle language change via locale switch and reload
-const changeLanguage = async (localeCode: string) => {
-  try {
-    await setLocale(localeCode);
-    // Force page reload to get SSR content in new language
-    if (process.client) {
-      await nextTick();
-      window.location.reload();
-    }
-  } catch (error) {
-    console.error('Failed to change language:', error);
-  }
-};
-
 interface NavLink {
   to: string;
   label: string;
@@ -112,17 +95,15 @@ const handleLinkClick = () => {
       </div>
       <div class="flex gap-2">
         <button
-          v-for="loc in availableLocales"
+          v-for="loc in locales"
           :key="loc.code"
-          @click="changeLanguage(loc.code)"
+          @click="setLocale(loc.code)"
           :class="[
             'flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors',
             locale === loc.code
               ? 'bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-300'
               : 'bg-muted text-muted-foreground hover:bg-muted/80',
           ]"
-          :aria-label="`Switch to ${loc.name}`"
-          :aria-pressed="locale === loc.code"
         >
           {{ loc.name }}
         </button>

@@ -182,24 +182,12 @@ const savePreferences = async () => {
 
   // Update language if changed
   if (preferencesForm.value.language !== locale.value) {
-    try {
-      await setLocale(preferencesForm.value.language);
-      // Show success message briefly before reload
-      preferencesSuccess.value = true;
-      if (process.client) {
-        await nextTick();
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
-        return;
-      }
-    } catch (error) {
-      console.error('Failed to change language:', error);
-    }
+    setLocale(preferencesForm.value.language);
   }
 
-  // Simulate API call for other preferences
+  // Simulate API call
   await new Promise(resolve => setTimeout(resolve, 1000));
+
   preferencesSaving.value = false;
   preferencesSuccess.value = true;
 
