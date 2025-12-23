@@ -230,19 +230,12 @@ export default defineNuxtConfig({
   // Modules configuration
   i18n: {
     defaultLocale: "en",
+    langDir: fileURLToPath(new URL("./i18n/locales", import.meta.url)),
     locales: [
-      {
-        code: "en",
-        name: "English",
-        file: fileURLToPath(new URL("./i18n/locales/en.json", import.meta.url))
-      },
-      {
-        code: "fr",
-        name: "Français",
-        file: fileURLToPath(new URL("./i18n/locales/fr.json", import.meta.url))
-      },
+      { code: "en", name: "English", file: "en.json" },
+      { code: "fr", name: "Français", file: "fr.json" },
     ],
-    strategy: "prefix_except_default", // URLs: /pricing (en), /fr/pricing (fr)
+    strategy: "no_prefix",
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: "i18n_redirected",
@@ -290,18 +283,7 @@ export default defineNuxtConfig({
     // Prerendering for better performance
     prerender: {
       crawlLinks: true,
-      routes: [
-        '/',
-        '/fr',
-        '/fr/pricing',
-        '/fr/composants',
-        '/fr/form',
-        '/fr/dashboard',
-        '/fr/products',
-        '/fr/users',
-        '/fr/orders',
-        '/fr/settings',
-      ],
+      routes: ['/'],
     },
   },
 });

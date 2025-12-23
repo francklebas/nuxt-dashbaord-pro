@@ -4,29 +4,16 @@ import DpAvatarDropdown from "./DpAvatarDropdown.vue";
 import DpMobileDrawer from "./DpMobileDrawer.vue";
 import DpMobileNav from "./DpMobileNav.vue";
 
-const { t, locale, locales } = useI18n();
+const { t, locale, locales, setLocale } = useI18n();
 const { isAuthenticated } = useAuth();
-const route = useRoute();
 
-// Handle language change via URL navigation
-// Manual path construction to work around i18n route generation bug
-const changeLanguage = (localeCode: string) => {
-  const currentPath = route.path;
-
-  let newPath: string;
-  if (localeCode === 'en') {
-    // Switch to English: remove /fr prefix if present
-    newPath = currentPath.replace(/^\/fr/, '') || '/';
-  } else if (localeCode === 'fr') {
-    // Switch to French: add /fr prefix if not already present
-    newPath = currentPath.startsWith('/fr')
-      ? currentPath
-      : `/fr${currentPath === '/' ? '' : currentPath}`;
-  } else {
-    newPath = currentPath;
+// Handle language change via locale switch and reload
+const changeLanguage = async (localeCode: string) => {
+  await setLocale(localeCode);
+  // Force page reload to get SSR content in new language
+  if (process.client) {
+    window.location.reload();
   }
-
-  navigateTo(newPath);
 };
 
 // Mobile menu state
