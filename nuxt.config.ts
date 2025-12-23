@@ -38,7 +38,7 @@ export default defineNuxtConfig({
 
   // Enable tree-shaking for better bundle size
   features: {
-    inlineStyles: true, // Inline critical CSS to eliminate render-blocking
+    inlineStyles: false, // Disabled: causes issues with Tailwind CSS on Netlify
   },
 
   // Route Rules - SWR Cache Strategy for Performance
