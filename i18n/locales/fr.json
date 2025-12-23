@@ -1,7 +1,8 @@
 {
   "welcome": "Bienvenue",
   "common": {
-    "theme": "Thème"
+    "theme": "Thème",
+    "language": "Langue"
   },
   "home": {
     "meta": {

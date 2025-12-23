@@ -2,7 +2,24 @@
 import DpButton from "../DpButton.vue";
 import DpThemeToggle from "./DpThemeToggle.vue";
 
-const { t } = useI18n();
+const { t, locale, locales, setLocale } = useI18n();
+
+// Properly access locales ComputedRef
+const availableLocales = computed(() => locales.value);
+
+// Handle language change via locale switch and reload
+const changeLanguage = async (localeCode: string) => {
+  try {
+    await setLocale(localeCode);
+    // Force page reload to get SSR content in new language
+    if (process.client) {
+      await nextTick();
+      window.location.reload();
+    }
+  } catch (error) {
+    console.error('Failed to change language:', error);
+  }
+};
 
 interface NavLink {
   to: string;
@@ -85,6 +102,32 @@ const handleLinkClick = () => {
         <DpThemeToggle />
       </div>
     </template>
+
+    <!-- Language Switcher Section -->
+    <div class="my-4 border-t border-border" />
+    <div class="px-4 py-2">
+      <div class="flex items-center gap-3 mb-3">
+        <Icon name="lucide:globe" class="w-5 h-5 text-muted-foreground" />
+        <span class="text-sm font-medium text-foreground">{{ $t("common.language") }}</span>
+      </div>
+      <div class="flex gap-2">
+        <button
+          v-for="loc in availableLocales"
+          :key="loc.code"
+          @click="changeLanguage(loc.code)"
+          :class="[
+            'flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors',
+            locale === loc.code
+              ? 'bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-300'
+              : 'bg-muted text-muted-foreground hover:bg-muted/80',
+          ]"
+          :aria-label="`Switch to ${loc.name}`"
+          :aria-pressed="locale === loc.code"
+        >
+          {{ loc.name }}
+        </button>
+      </div>
+    </div>
 
     <!-- CTA Button Section -->
     <template v-if="ctaButton">
