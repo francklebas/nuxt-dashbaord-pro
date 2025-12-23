@@ -4,16 +4,14 @@ import DpAvatarDropdown from "./DpAvatarDropdown.vue";
 import DpMobileDrawer from "./DpMobileDrawer.vue";
 import DpMobileNav from "./DpMobileNav.vue";
 
-const { t, locale, locales, setLocale } = useI18n();
+const { t, locale, locales } = useI18n();
 const { isAuthenticated } = useAuth();
+const switchLocalePath = useSwitchLocalePath();
 
-// Handle language change with page reload for SSR
-const changeLanguage = async (localeCode: string) => {
-  await setLocale(localeCode);
-  // Force page reload to get SSR content in new language
-  if (process.client) {
-    window.location.reload();
-  }
+// Handle language change via URL navigation
+const changeLanguage = (localeCode: string) => {
+  const path = switchLocalePath(localeCode);
+  navigateTo(path);
 };
 
 // Mobile menu state
