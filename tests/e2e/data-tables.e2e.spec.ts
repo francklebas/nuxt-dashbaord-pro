@@ -17,8 +17,8 @@ test.describe('Data Tables', () => {
     await page.click('text=Products');
     await page.waitForURL('/products');
 
-    // Check page title (use more specific selector to avoid navigation title)
-    await expect(page.locator('h1').nth(1)).toContainText('Products Management');
+    // Check page title (use text-based selector to avoid navigation elements)
+    await expect(page.getByRole('heading', { level: 1, name: /Products Management/i })).toBeVisible();
 
     // Wait for data to load
     await page.waitForTimeout(1000);
@@ -38,7 +38,7 @@ test.describe('Data Tables', () => {
     await page.click('text=Users');
     await page.waitForURL('/users');
 
-    await expect(page.locator('h1').nth(1)).toContainText('User Management');
+    await expect(page.getByRole('heading', { level: 1, name: /User Management/i })).toBeVisible();
 
     await page.waitForTimeout(1000);
     await expect(page.locator('table')).toBeVisible();
@@ -49,7 +49,7 @@ test.describe('Data Tables', () => {
     await page.click('text=Orders');
     await page.waitForURL('/orders');
 
-    await expect(page.locator('h1').nth(1)).toContainText('Order Management');
+    await expect(page.getByRole('heading', { level: 1, name: /Order Management/i })).toBeVisible();
 
     await page.waitForTimeout(1000);
     await expect(page.locator('table')).toBeVisible();

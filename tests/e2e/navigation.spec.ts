@@ -8,11 +8,12 @@ test.describe('Navigation and Routing', () => {
   });
 
   test('should display main navigation links', async ({ page }) => {
-    await expect(page.getByRole('link', { name: /home/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /dashboard/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /components/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /pricing/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /form/i })).toBeVisible();
+    // Check desktop navigation links (visible on desktop, hidden on mobile)
+    await expect(page.getByRole('link', { name: /home/i }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: /dashboard/i }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: /components/i }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: /pricing/i }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: /form/i }).first()).toBeVisible();
   });
 
   test('should navigate to all main pages', async ({ page }) => {
