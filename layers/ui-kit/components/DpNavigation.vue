@@ -1,9 +1,41 @@
 <script setup lang="ts">
 import DpThemeToggle from "./DpThemeToggle.vue";
 import DpAvatarDropdown from "./DpAvatarDropdown.vue";
+import DpMobileDrawer from "./DpMobileDrawer.vue";
+import DpMobileNav from "./DpMobileNav.vue";
 
-const { locale, locales, setLocale } = useI18n();
+const { t, locale, locales, setLocale } = useI18n();
 const { isAuthenticated } = useAuth();
+
+// Mobile menu state
+const mobileMenuOpen = ref(false);
+
+const closeMobileMenu = () => {
+  mobileMenuOpen.value = false;
+};
+
+// Auto-close on resize to desktop
+onMounted(() => {
+  const handleResize = () => {
+    if (window.innerWidth >= 768 && mobileMenuOpen.value) {
+      closeMobileMenu();
+    }
+  };
+  window.addEventListener("resize", handleResize);
+  onUnmounted(() => window.removeEventListener("resize", handleResize));
+});
+
+// Mobile navigation links
+const mobileNavLinks = computed(() => [
+  { to: "/", label: t("nav.home"), icon: "lucide:home" },
+  { to: "/dashboard", label: t("nav.dashboard"), icon: "lucide:layout-dashboard" },
+  { to: "/composants", label: t("nav.components"), icon: "lucide:package" },
+  { to: "/pricing", label: t("nav.pricing"), icon: "lucide:tag" },
+  { to: "/form", label: t("nav.form"), icon: "lucide:file-text" },
+  { to: "/products", label: t("nav.products"), icon: "lucide:shopping-bag" },
+  { to: "/users", label: t("nav.users"), icon: "lucide:users" },
+  { to: "/orders", label: t("nav.orders"), icon: "lucide:shopping-cart" },
+]);
 </script>
 
 <template>
@@ -13,9 +45,7 @@ const { isAuthenticated } = useAuth();
         <!-- Logo / Brand -->
         <div class="flex items-center gap-8">
           <NuxtLink to="/" class="flex-shrink-0">
-            <h1 class="text-xl font-bold text-foreground">
-              {{ $t("welcome") }}
-            </h1>
+            <img src="/dash.svg" alt="Logo" class="h-8 w-auto" />
           </NuxtLink>
 
           <!-- Navigation links -->
@@ -80,9 +110,19 @@ const { isAuthenticated } = useAuth();
         </div>
 
         <!-- Navigation items -->
-        <div class="hidden md:flex md:items-center md:space-x-4">
+        <div class="flex items-center space-x-4">
+          <!-- Mobile menu button -->
+          <button
+            @click="mobileMenuOpen = !mobileMenuOpen"
+            class="md:hidden p-2 rounded-lg hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
+            :aria-expanded="mobileMenuOpen"
+            :aria-label="mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'"
+          >
+            <Icon :name="mobileMenuOpen ? 'lucide:x' : 'lucide:menu'" class="w-6 h-6" />
+          </button>
+
           <!-- Language selector -->
-          <div class="flex items-center gap-2">
+          <div class="hidden md:flex md:items-center gap-2">
             <button
               v-for="loc in locales"
               :key="loc.code"
@@ -121,4 +161,19 @@ const { isAuthenticated } = useAuth();
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Navigation Drawer -->
+  <DpMobileDrawer v-model:open="mobileMenuOpen">
+    <DpMobileNav
+      :nav-links="mobileNavLinks"
+      :show-auth-buttons="!isAuthenticated"
+      :show-theme-toggle="true"
+      :on-navigate="closeMobileMenu"
+      :cta-button="isAuthenticated ? undefined : {
+        label: $t('auth.register.title'),
+        to: '/auth/register',
+        icon: 'lucide:rocket'
+      }"
+    />
+  </DpMobileDrawer>
 </template>

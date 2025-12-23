@@ -4,13 +4,27 @@ import DpThemeToggle from "./DpThemeToggle.vue";
 
 const { t } = useI18n();
 
-interface Props {
-  onNavigate?: () => void;
+interface NavLink {
+  to: string;
+  label: string;
+  icon: string;
 }
 
-const props = defineProps<Props>();
+interface Props {
+  onNavigate?: () => void;
+  navLinks?: NavLink[];
+  showAuthButtons?: boolean;
+  showThemeToggle?: boolean;
+  ctaButton?: { label: string; to: string; icon?: string };
+}
 
-const navLinks = computed(() => [
+const props = withDefaults(defineProps<Props>(), {
+  showAuthButtons: false,
+  showThemeToggle: true,
+});
+
+// Default links for backwards compatibility
+const defaultNavLinks: NavLink[] = [
   {
     to: "/dashboard-preview",
     label: t("home.nav.demo"),
@@ -26,7 +40,9 @@ const navLinks = computed(() => [
     label: t("home.nav.login"),
     icon: "lucide:log-in",
   },
-]);
+];
+
+const navLinks = computed(() => props.navLinks || defaultNavLinks);
 
 const handleLinkClick = () => {
   if (props.onNavigate) {
@@ -39,14 +55,9 @@ const handleLinkClick = () => {
   <nav class="flex flex-col gap-2">
     <!-- Logo -->
     <div class="mb-6">
-      <div class="flex items-center gap-2">
-        <div
-          class="bg-primary flex h-10 w-10 items-center justify-center rounded-lg"
-        >
-          <span class="text-base font-bold text-white">ND</span>
-        </div>
-        <span class="font-bold text-foreground">Nuxt Dashboard Pro</span>
-      </div>
+      <NuxtLink to="/" @click="handleLinkClick" class="flex items-center">
+        <img src="/dash.svg" alt="Logo" class="h-10 w-auto" />
+      </NuxtLink>
     </div>
 
     <!-- Navigation Links -->
@@ -62,25 +73,31 @@ const handleLinkClick = () => {
       <span>{{ link.label }}</span>
     </NuxtLink>
 
-    <!-- Divider -->
-    <div class="my-4 border-t border-border" />
+    <!-- Theme Toggle Section -->
+    <template v-if="showThemeToggle">
+      <!-- Divider -->
+      <div class="my-4 border-t border-border" />
 
-    <!-- Theme Toggle -->
-    <div class="flex items-center gap-3 px-4 py-2">
-      <Icon name="lucide:palette" class="w-5 h-5 text-muted-foreground" />
-      <span class="flex-1 text-foreground">{{ $t("common.theme") }}</span>
-      <DpThemeToggle />
-    </div>
+      <!-- Theme Toggle -->
+      <div class="flex items-center gap-3 px-4 py-2">
+        <Icon name="lucide:palette" class="w-5 h-5 text-muted-foreground" />
+        <span class="flex-1 text-foreground">{{ $t("common.theme") }}</span>
+        <DpThemeToggle />
+      </div>
+    </template>
 
-    <!-- Divider -->
-    <div class="my-4 border-t border-border" />
+    <!-- CTA Button Section -->
+    <template v-if="ctaButton">
+      <!-- Divider -->
+      <div class="my-4 border-t border-border" />
 
-    <!-- CTA Button -->
-    <NuxtLink to="/auth/register" @click="handleLinkClick">
-      <DpButton variant="primary" size="lg" class="w-full">
-        <Icon name="lucide:rocket" class="w-5 h-5 mr-2" />
-        {{ $t("home.nav.getStarted") }}
-      </DpButton>
-    </NuxtLink>
+      <!-- CTA Button -->
+      <NuxtLink :to="ctaButton.to" @click="handleLinkClick">
+        <DpButton variant="primary" size="lg" class="w-full">
+          <Icon v-if="ctaButton.icon" :name="ctaButton.icon" class="w-5 h-5 mr-2" />
+          {{ ctaButton.label }}
+        </DpButton>
+      </NuxtLink>
+    </template>
   </nav>
 </template>
